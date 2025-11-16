@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <title>DIGIY DRIVER — Base</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <div class="brand">
+      <img src="assets/logo-digiy.png" alt="DIGIY" class="brand-logo">
+      <div class="brand-text">
+        <span class="brand-title">DIGIY DRIVER</span>
+        <span class="brand-subtitle">Base · Moule GitHub</span>
+      </div>
+    </div>
+    <button id="btnToggleOnline" class="status-pill offline">
+      <span class="status-dot"></span>
+      <span id="statusLabel">Hors ligne</span>
+    </button>
+  </header>
+
+  <section class="info-strip">
+    <div>👤 <span id="uiDriverName">Chauffeur Test</span></div>
+    <div>🚗 <span id="uiDriverCar">Taxi / VTC</span></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="courses">Courses</button>
+    <button class="tab" data-tab="depenses">Dépenses</button>
+    <button class="tab" data-tab="statut">Statut</button>
+    <button class="tab" data-tab="profil">Profil</button>
+  </nav>
+
+  <!-- COURSES -->
+  <section id="tab-courses" class="tab-panel active">
+    <div class="panel-header">
+      <h2>Courses du jour</h2>
+      <div class="kpis">
+        <div class="kpi">
+          <span class="kpi-label">Total</span>
+          <span class="kpi-value" id="kpiCoursesTotal">0 FCFA</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Courses</span>
+          <span class="kpi-value" id="kpiCoursesCount">0</span>
+        </div>
+      </div>
+    </div>
+
+    <form id="formCourse" class="card form">
+      <div class="field">
+        <label for="courseAmount">Montant (FCFA)</label>
+        <input type="number" id="courseAmount" min="0" step="100" required>
+      </div>
+      <div class="field">
+        <label for="courseMode">Mode de paiement</label>
+        <select id="courseMode">
+          <option value="cash">Cash</option>
+          <option value="wave">Wave</option>
+          <option value="om">Orange Money</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="courseNote">Note (optionnel)</label>
+        <input type="text" id="courseNote" placeholder="Course Saly → Dakar, client hôtel...">
+      </div>
+      <button type="submit" class="btn-primary">Ajouter la course</button>
+    </form>
+
+    <div id="listCourses" class="list card">
+      <p class="list-empty">Aucune course pour l’instant.</p>
+    </div>
+  </section>
+
+  <!-- DEPENSES -->
+  <section id="tab-depenses" class="tab-panel">
+    <div class="panel-header">
+      <h2>Dépenses du jour</h2>
+      <div class="kpis">
+        <div class="kpi">
+          <span class="kpi-label">Total</span>
+          <span class="kpi-value" id="kpiDepensesTotal">0 FCFA</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Lignes</span>
+          <span class="kpi-value" id="kpiDepensesCount">0</span>
+        </div>
+      </div>
+    </div>
+
+    <form id="formDepense" class="card form">
+      <div class="field">
+        <label for="depenseLabel">Motif</label>
+        <input type="text" id="depenseLabel" placeholder="Carburant, lavage, péage..." required>
+      </div>
+      <div class="field">
+        <label for="depenseAmount">Montant (FCFA)</label>
+        <input type="number" id="depenseAmount" min="0" step="100" required>
+      </div>
+      <button type="submit" class="btn-outline">Ajouter la dépense</button>
+    </form>
+
+    <div id="listDepenses" class="list card">
+      <p class="list-empty">Aucune dépense enregistrée.</p>
+    </div>
+  </section>
+
+  <!-- STATUT -->
+  <section id="tab-statut" class="tab-panel">
+    <div class="card">
+      <h2>Statut & GPS</h2>
+      <p class="muted">
+        Cette version est un <strong>moule</strong> : tout est prêt pour connecter plus tard :
+        API DIGIY PULSE, GPS temps réel, suivi des courses, etc.
+      </p>
+      <ul class="status-list">
+        <li>
+          <span>Statut chauffeur</span>
+          <span id="statusChauffeurBadge" class="badge badge-offline">Hors ligne</span>
+        </li>
+        <li>
+          <span>GPS</span>
+          <span id="gpsStatus" class="badge badge-disabled">Inactif</span>
+        </li>
+      </ul>
+      <p class="hint">
+        ➜ Plus tard : connexion à un backend Node / API DIGIY, envoi des courses en temps réel.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="tab-profil" class="tab-panel">
+    <div class="card">
+      <h2>Profil chauffeur</h2>
+      <div class="profil-row">
+        <span>Nom</span><strong id="profilName">—</strong>
+      </div>
+      <div class="profil-row">
+        <span>Téléphone</span><strong id="profilPhone">—</strong>
+      </div>
+      <div class="profil-row">
+        <span>Type véhicule</span><strong id="profilType">—</strong>
+      </div>
+      <div class="profil-row">
+        <span>Immatriculation</span><strong id="profilPlate">—</strong>
+      </div>
+      <div class="profil-row">
+        <span>Zone</span><strong id="profilZone">—</strong>
+      </div>
+      <p class="muted small">
+        Dans les futures versions, ce profil sera chargé depuis l’API DIGIY (abonnement, pièces
+        vérifiées, etc.).
+      </p>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <span>DIGIY DRIVER · Base v1</span>
+    <span class="muted">Moule public GitHub — 0% commission</span>
+  </footer>
+</div>
+
+<script src="driver.js"></script>
+</body>
+</html>
+
