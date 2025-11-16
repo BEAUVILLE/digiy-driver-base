@@ -53,17 +53,21 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 .brand-logo {
-width: 52px;
-height: 52px;
-  padding: 6px;
+  width: 110px;     /* MAXIMUM ÉLÉGANT */
+  height: 110px;    /* carré parfait */
+  padding: 12px;    /* respiration */
   border-radius: 50%;
-  background: #ffffff; /* fond blanc ivoire */
-  border: 2px solid rgba(212,175,55,0.55); /* or */
-box-shadow: 
-  0 3px 12px rgba(0,0,0,0.18),
-background: radial-gradient(circle, #ffffff 0%, #fff7dd 85%);
-  inset 0 0 8px rgba(212,175,55,0.15);
+  background: #e00000; /* ROUGE DIGIY */
+  border: 3px solid #b30000; /* rouge foncé luxe */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.top-bar {
+  height: 180px;       /* laisse respirer le logo */
+  padding-top: 10px; 
+  text-align: center;
 }
 
 
